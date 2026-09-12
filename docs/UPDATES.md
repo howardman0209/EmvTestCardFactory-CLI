@@ -18,6 +18,25 @@ If a newer stable host exists, the command displays its release page and a
 download link matching the current platform, when that asset is available.
 It does not replace the running installation.
 
+For a package-manager installation, use that package manager to upgrade:
+
+```shell
+brew update
+brew upgrade --cask card-factory
+```
+
+```powershell
+scoop update
+scoop update card-factory
+```
+
+Verify with `card-factory --version` and `card-factory doctor --scheme visa`.
+Package-manager upgrade, uninstall and reinstall preserve the external CAP cache
+and selection. Review the [versioned release notes](../releases/README.md) for
+command changes and compatibility before upgrading.
+
+For a manual ZIP installation, follow the steps below.
+
 Download the new archive and checksum, [verify and extract it](INSTALLATION.md)
 into a separate directory, then run the new launcher's `--version` and
 `doctor`. Keep the previous installation until the new one has been verified.
@@ -92,7 +111,7 @@ Manual downloads are available on the
 [CAP release pages](https://github.com/howardman0209/EmvTestCardFactory-CLI/releases?q=caps-),
 but use `artifacts download` for the application's verified cache workflow.
 
-Host 0.2.0 uses schema 2 manifests with a minimum host version, an exclusive
+Host 0.2.2 uses schema 2 manifests with a minimum host version, an exclusive
 maximum host version, personalization protocol, applet contract and Java Card
 target. A new CAP may require upgrading the CLI first. Older hosts without
 update support need a manual host upgrade. The card's package version, CAP
