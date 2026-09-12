@@ -47,6 +47,7 @@ built-in test keys and profiles are not intended for production issuance.
 
 ## Documentation
 
+- [Versioned release notes and publication](releases/README.md)
 - [Installation and platform selection](docs/INSTALLATION.md)
 - [CLI commands and card workflow](docs/CLI.md)
 - [CLI and CAP updates, compatibility and troubleshooting](docs/UPDATES.md)
