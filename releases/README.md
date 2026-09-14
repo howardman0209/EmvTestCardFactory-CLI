@@ -1,6 +1,6 @@
 # Release notes
 
-Each CLI or CAP version has a separate Markdown file. Historical files preserve
+Each CLI, UI or CAP version has a separate Markdown file. Historical files preserve
 the published GitHub release body verbatim; their commits do not rebuild or
 republish binaries.
 
@@ -72,3 +72,26 @@ only; it does not modify the GitHub release body or promote a prerelease.
 Promote staged releases explicitly after validation using the existing manual
 process. A changed binary requires a new version; published assets are never
 replaced by this workflow.
+
+## Publish a UI version
+
+UI notes use independent `releases/ui-<version>.md` files and the heading
+`# Card Factory UI <version>`. The source SHA and explicit `stable`/`staged`
+metadata use the same format as CLI notes. Start with `channel: staged`; record
+native installer, signing and physical-card evidence before stable publication.
+
+The private UI workflow supplies exactly these four assets for one version:
+
+- `card-factory-ui-<version>-macos-aarch64.dmg`
+- `card-factory-ui-<version>-macos-aarch64.dmg.sha256`
+- `card-factory-ui-<version>-windows-x64.msi`
+- `card-factory-ui-<version>-windows-x64.msi.sha256`
+
+**Publish UI release notes** runs only when UI note files change on `main`. It
+checks the draft source commit, exact installer set and digests, then rechecks
+that the draft has not changed before publication. CLI ZIPs and Intel Mac assets
+are rejected for UI releases. Published versions remain unchanged on reruns.
+The public workflow uses its own `GITHUB_TOKEN`; no new secret is required.
+
+No UI version is available merely because this publication tooling exists.
+Do not commit unfinished `ui-*.md` notes to `main`: that is a publication trigger.

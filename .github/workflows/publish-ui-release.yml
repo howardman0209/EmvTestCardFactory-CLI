@@ -1,0 +1,27 @@
+name: Publish UI release notes
+
+on:
+  push:
+    branches: [main]
+    paths: ['releases/ui-*.md']
+
+permissions:
+  contents: write
+
+concurrency:
+  group: ui-public-release
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - name: Verify and publish existing UI drafts
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python3 scripts/publish_ui_release.py
